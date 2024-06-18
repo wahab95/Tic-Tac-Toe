@@ -1,0 +1,22 @@
+.item{
+    text-align: center;
+    align-content: center;
+    font-size: 50px;
+}
+.item > *{
+    overflow: scroll;
+    word-break: break-all;
+}
+.item:hover::after {
+    text-align: center;
+
+    top: 42%; 
+    left: 42%;
+    content: "X";
+    font-size: 36px;
+    color: rgba(0, 0, 0, 0.171);
+
+}
+.item:hover{
+    cursor: pointer;
+}
