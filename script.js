@@ -36,11 +36,3 @@ const humanPlay = function(){
 
 setBoard();
 Play(humanPlay,computerPlay);
-
-// function checkWin(){
-//     if ((board.includes('r0c0')& board.includes('r1c1') & board.includes('r2c2')) === 'x'){
-//         console.log('win');
-//         console.log(board)
-//     }
-// }
-
