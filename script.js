@@ -25,8 +25,9 @@ const humanPlay = function(){
                     document.querySelector(`#${elementId}`).textContent='x';
             }
         }
-        
+        gameOver();
         npc();
+        
     });
 }
 function npc(){
@@ -46,7 +47,27 @@ function npc(){
     wantedCell['user']= 'npc';
 
 }
- 
+function gameOver() {
+    const winList = [ 
+      ['r0c0', 'r0c1', 'r0c2'],
+      ['r1c0', 'r1c1', 'r1c2'],
+      ['r2c0', 'r2c1', 'r2c2'],
+      ['r0c0', 'r1c0', 'r2c0'],   
+      ['r0c1', 'r1c1', 'r2c1'],   
+      ['r0c2', 'r1c2', 'r2c2'],   
+      ['r0c0', 'r1c1', 'r2c2'],   
+      ['r0c2', 'r1c1', 'r2c0']    
+    ];
+    const userCellCoordinates = cells.filter(cell => cell['user'] === 'user')
+                                     .map(cell => cell['id']); 
+    for (const winCondition of winList) {
+      if (winCondition.every(cell => userCellCoordinates.includes(cell))) {
+        alert('You win!');
+        return;
+      }
+    }
+  }
+  
 
 
 
