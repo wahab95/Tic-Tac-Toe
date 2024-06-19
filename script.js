@@ -25,13 +25,31 @@ const humanPlay = function(){
                     document.querySelector(`#${elementId}`).textContent='x';
             }
         }
-    
+        
+        npc();
     });
 }
+function npc(){
+    const unplayedcells = cells.filter(cell => !(cell['user'] === 'user' || cell['user'] === 'npc'));
 
+    if(unplayedcells.length === 0){
+        return;
+    }
+    console.log(unplayedcells);
+    const r = Math.round(Math.random()*unplayedcells.length);
+    const elementId = unplayedcells[r]['id'];
+    console.log(elementId);
+    document.querySelector(`#${elementId}`).textContent='o';
+    const wantedCell = cells.find((c)=>{
+        return c['id'] === elementId;
+    })
+    wantedCell['user']= 'npc';
+
+}
  
 
 
 
 
 setBoard();
+humanPlay();
