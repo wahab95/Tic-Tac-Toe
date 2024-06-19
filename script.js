@@ -35,4 +35,3 @@ const humanPlay = function(){
 
 
 setBoard();
-Play(humanPlay,computerPlay);
