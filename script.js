@@ -1,56 +1,81 @@
 const cells = [];
 const cont = document.querySelector('.container');
-
-function setBoard() {
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            const e = document.createElement('div');
-            e.style.border = '1px solid black';
+const setBoard=()=>{    for(let i =0; i < 3; i++){
+        for(let j = 0; j < 3 ;j++){
+            const e = document.createElement('div')
+            e.style['border']= '1px solid black';
             e.classList.add('item');
-            e.setAttribute('id', `r${i}c${j}`);
+            e.setAttribute('id',`r${i}c${j}`)
             cont.appendChild(e);
             cells.push({
-                x: i,
-                y: j,
-                user: null,
-                id: `r${i}c${j}`
-            });
+                x:i,
+                y:j, 
+                user:null,
+                id:`r${i}c${j}`})
         }
     }
 }
-
-function humanPlay() {
-    cont.addEventListener('click', (e) => {
-        if (e.target.classList.contains('item') && e.target.textContent === '') {
-            const elementId = e.target.id;
-            for (let i = 0; i < cells.length; i++) {
-                if (cells[i].id === elementId && cells[i].user === null) {
-                    cells[i].user = 'user';
-                    e.target.textContent = 'x';
-                    computerPlay();  // Call computerPlay after human plays
-                    break; // Stop searching after finding a match
-                }
+const humanPlay = function(){
+    cont.addEventListener('click',(e)=>{
+        const elementId = e.target['id'];
+        const len = cells.length;
+        for(let i = 0 ; i < len ; i++){
+            if (cells[i]['id'] === elementId & cells[i]['user'] === null){
+                    cells[i]['user'] = 'user';
+                    document.querySelector(`#${elementId}`).textContent='x';
             }
         }
+    
     });
 }
 
-function computerPlay() {
-    const availableCells = cells.filter(cell => cell.user === null);
-    if (availableCells.length > 0) {
-        const randomIndex = Math.floor(Math.random() * availableCells.length);
-        const chosenCell = availableCells[randomIndex];
-        chosenCell.user = 'computer';
-        document.querySelector(`#${chosenCell.id}`).textContent = 'o';
-    } else {
-        // Handle the case where no available cells are left (game is a draw)
-        console.log("It's a draw!");
-    }
+const computerPlay = function(){
+    
+    //const done = true
+    // while(done){
+    //     let i = 0;
+    //     let x = Math.round(Math.random*3);
+    //     let y = Math.round(Math.random*3);
+    //     const elementId = `r${x}c${y}`
+    //     if (cells[i]['id'] === elementId & cells[i]['user'] === null){
+    //             cells[i]['user'] = 'Computer';
+    //             document.querySelector(`#${elementId}`).textContent='o';
+    //             done=false;
+    //     }
+    //     else{
+    //         i++
+    //     }
+    // }
+    cont.addEventListener('click',(e)=>{
+        const elementId = e.target['id'];
+        const len = cells.length;
+        for(let i = 0 ; i < len ; i++){
+            if (cells[i]['id'] === elementId & cells[i]['user'] === null){
+                    cells[i]['user'] = 'user';
+                    document.querySelector(`#${elementId}`).textContent='o';
+            }
+        }
+    
+    });
+    
 }
 
-function Play(human) {
-    human(); // Start with the human player
+function Play(human, computer){
+    new Promise((resolve, reject) => {
+        human();
+        computer();
+    })
 }
+
+
 
 setBoard();
-Play(humanPlay);
+Play(humanPlay,computerPlay);
+
+// function checkWin(){
+//     if ((board.includes('r0c0')& board.includes('r1c1') & board.includes('r2c2')) === 'x'){
+//         console.log('win');
+//         console.log(board)
+//     }
+// }
+
