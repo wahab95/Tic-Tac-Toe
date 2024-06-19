@@ -29,43 +29,8 @@ const humanPlay = function(){
     });
 }
 
-const computerPlay = function(){
-    
-    //const done = true
-    // while(done){
-    //     let i = 0;
-    //     let x = Math.round(Math.random*3);
-    //     let y = Math.round(Math.random*3);
-    //     const elementId = `r${x}c${y}`
-    //     if (cells[i]['id'] === elementId & cells[i]['user'] === null){
-    //             cells[i]['user'] = 'Computer';
-    //             document.querySelector(`#${elementId}`).textContent='o';
-    //             done=false;
-    //     }
-    //     else{
-    //         i++
-    //     }
-    // }
-    cont.addEventListener('click',(e)=>{
-        const elementId = e.target['id'];
-        const len = cells.length;
-        for(let i = 0 ; i < len ; i++){
-            if (cells[i]['id'] === elementId & cells[i]['user'] === null){
-                    cells[i]['user'] = 'user';
-                    document.querySelector(`#${elementId}`).textContent='o';
-            }
-        }
-    
-    });
-    
-}
+ 
 
-function Play(human, computer){
-    new Promise((resolve, reject) => {
-        human();
-        computer();
-    })
-}
 
 
 
